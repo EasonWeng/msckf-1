@@ -1,10 +1,10 @@
-#fixed some errors by jackshi 
+# fixed some errors by jackshi 
 
 - add '#include <map>' in EKF.h
 
 - use opencv 3.2.0
 
-- cv_bridge must use opencv 3.2.0 and rebuild
+- rebuild cv_bridge with opencv 3.2.0
 
 - add sensor_msgs/Imu topic
 
