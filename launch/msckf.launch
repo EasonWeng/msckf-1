@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find msckf)/launch/feature_tracker.launch" />
+
+    <node pkg="msckf" type="msckf_node" name="msckf_node" />
+</launch>
