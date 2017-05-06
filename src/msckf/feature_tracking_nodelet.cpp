@@ -36,7 +36,7 @@ void FeatureTrackingNodelet::onInit() {
 
 void FeatureTrackingNodelet::imageCallback(const sensor_msgs::ImageConstPtr &msg) {
 
-    std::cout<<"111111111"<<std::endl;
+
     static cv::Mat previous_descriptors;
     static std::vector<cv::KeyPoint> previous_keypoints;
 
@@ -225,7 +225,12 @@ FeatureTrackingNodelet::matchFeatures(std::vector<cv::KeyPoint> &keypoints,
 
     // Assign previous keypoint ID for each match
     for (const auto &m : matches) {
+       //if(m.imgIdx>=0){
         keypoints[m.queryIdx].class_id = previous_keypoints[m.trainIdx].class_id;
+             //std::cout<<"queryIdx  "<<m.queryIdx;
+              //std::cout<<"trainIdx  "<<m.trainIdx<<std::endl;
+      // }
+     // else{  std::cout<<"over"<<std::endl;}
     }
 
     return matches;
@@ -237,7 +242,7 @@ FeatureTrackingNodelet::filterMatches(const std::vector<std::vector<cv::DMatch>>
     for (const auto &m : knn_matches) {
         assert(m.size() >= 2);
         auto ratio = 1.0 * m[0].distance / m[1].distance;
-        if (ratio < MATCH_RATIO) {
+        if (ratio < MATCH_RATIO && m[0].imgIdx>=0 ) { // m[0].imgIdx>=0 added by jackshi
             matches.push_back(m[0]);
         }
     }

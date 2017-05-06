@@ -8,6 +8,7 @@
 
 - add sensor_msgs/Imu topic
 
+- fixed Segmentation fault of feature_tracking_node
 
 # MSCKF
 
